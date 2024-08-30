@@ -2,123 +2,123 @@
 	"honorifics": {
 		"san": {
 			"kanjis": ["さん"],
-			"alternatives": ["Mr.", "Ms.", "Miss", "Mister"],
+			"alternatives": ["Mr.", "Ms.", "Miss", "Mister"]
 		},
 		"sama": {
 			"kanjis": ["さま", "様"],
-			"alternatives": ["Lady", "Lord", "Sir", "Ma'am"],
+			"alternatives": ["Lady", "Lord", "Sir", "Ma'am"]
 		},
 		"kun": {
 			"kanjis": ["くん", "君"],
-			"alternatives": [],
+			"alternatives": []
 		},
 		"chan": {
 			"kanjis": ["ちゃん"],
-			"alternatives": [],
+			"alternatives": []
 		},
 		"tan": {
 			"kanjis": ["たん"],
-			"alternatives": [],
+			"alternatives": []
 		},
 		"senpai": {
 			"kanjis": ["先輩", "せんぱい"],
-			"alternatives": [],
+			"alternatives": []
 		},
 		"sensei": {
 			"kanjis": ["先生", "せんせい"],
-			"alternatives": ["Teacher", "Master", "Doctor", "Professor"],
+			"alternatives": ["Teacher", "Master", "Doctor", "Professor"]
 		},
 		"dono": {
 			"kanjis": ["殿"],
-			"alternatives": ["Sir"],
+			"alternatives": ["Sir"]
 		},
 		"nee": {
 			"kanjis": ["姉"],
-			"alternatives": ["Big sis", "Sis"],
+			"alternatives": ["Big sis", "Sis"]
 		},
 	    "onee": {
 	    	"kanjis": ["お姉"],
-	    	"alternatives": ["Big sis", "Sis"],
+	    	"alternatives": ["Big sis", "Sis"]
 	    },
 	    "neechan": {
 	    	"kanjis": ["姉ちゃん"],
-	    	"alternatives": ["Big sis", "Sis"],
+	    	"alternatives": ["Big sis", "Sis"]
 	    },
 	    "oneechan": {
 	    	"kanjis": ["お姉ちゃん"],
-	    	"alternatives": ["Big sis", "Sis"],
+	    	"alternatives": ["Big sis", "Sis"]
 	    },
 	    "neesan": {
 	    	"kanjis": ["姉さん"],
-	    	"alternatives": ["Big sis", "Sis"],
+	    	"alternatives": ["Big sis", "Sis"]
 	    },
 	    "oneesan": {
 	    	"kanjis": ["お姉さん"],
-	    	"alternatives": ["Big sis", "Sis"],
+	    	"alternatives": ["Big sis", "Sis"]
 	    },
 	    "nii": {
 	    	"kanjis": ["兄"],
-	    	"alternatives": ["Big bro", "Bro"],
+	    	"alternatives": ["Big bro", "Bro"]
 	    },
 	    "onii": {
 	    	"kanjis": ["お兄"],
-	    	"alternatives": ["Big bro", "Bro"],
+	    	"alternatives": ["Big bro", "Bro"]
 	    },
 	    "niichan": {
 	    	"kanjis": ["兄ちゃん"],
-	    	"alternatives": ["Big bro", "Bro"],
+	    	"alternatives": ["Big bro", "Bro"]
 	    },
 	    "oniichan": {
 	    	"kanjis": ["お兄ちゃん"],
-	    	"alternatives": ["Big bro", "Bro"],
+	    	"alternatives": ["Big bro", "Bro"]
 	    },
 	    "niisan": {
 	    	"kanjis": ["兄さん"],
-	    	"alternatives": ["Big bro", "Bro"],
+	    	"alternatives": ["Big bro", "Bro"]
 	    },
 	    "oniisan": {
 	    	"kanjis": ["お兄さん"],
-	    	"alternatives": ["Big bro", "Bro"],
+	    	"alternatives": ["Big bro", "Bro"]
 	    },
 	    "otosan": {
 	    	"kanjis": ["お父さん"],
-	    	"alternatives": [],
+	    	"alternatives": []
 	    },
 	    "ojisan": {
 	    	"kanjis": ["叔父さん","小父さん","伯父さん"],
-	    	"alternatives": ["Uncle"],
+	    	"alternatives": ["Uncle"]
 	    },
 	    "ojiisan": {
 	    	"kanjis": ["お祖父さん","御爺さん","お爺さん","御祖父さん"],
-	    	"alternatives": ["Grandfather", "Grandpa"],
+	    	"alternatives": ["Grandfather", "Grandpa"]
 	    },
 	    "okaasan": {
 	    	"kanjis": ["お母さん"],
-	    	"alternatives": [],
+	    	"alternatives": []
 	    },
 	    "obasan": {
 	    	"kanjis": ["伯母さん","小母さん","叔母さん"],
-	    	"alternatives": ["Aunt"],
+	    	"alternatives": ["Aunt"]
 	    },
 	    "obaasan": {
 	    	"kanjis": ["お祖母さん","御祖母さん","御婆さん","お婆さん"],
-	    	"alternatives": ["Grandmother", "Grandma"],
+	    	"alternatives": ["Grandmother", "Grandma"]
 	    },
 	    "baachan": {
 	    	"kanjis": ["祖母ちゃん"],
-	    	"alternatives": ["Grandmother", "Grandma"],
+	    	"alternatives": ["Grandmother", "Grandma"]
 	    },
 	    "baasan": {
 	    	"kanjis": ["祖母さん"],
-	    	"alternatives": ["Grandmother", "Grandma"],
+	    	"alternatives": ["Grandmother", "Grandma"]
 	    },
 	    "jiichan": {
 	    	"kanjis": ["祖父ちゃん"],
-	    	"alternatives": ["Grandfather", "Grandpa"],
+	    	"alternatives": ["Grandfather", "Grandpa"]
 	    },
 	    "jiisan": {
 	    	"kanjis": ["祖父さん"],
-	    	"alternatives": ["Grandfather", "Grandpa"],
-	    },
+	    	"alternatives": ["Grandfather", "Grandpa"]
+	    }
 	}
 }

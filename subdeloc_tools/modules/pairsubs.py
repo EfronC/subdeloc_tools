@@ -19,13 +19,6 @@ def intersect(t1, t2):
         return False
     return True
 
-def generate_item(interval):
-    return {
-        "interval": interval,
-        "nls": [],
-        "lines": {"left":[], "right":[]}
-    }
-
 def sanitize_string(string):
     # Match substrings enclosed in {}
     pattern = r"\{([^{}]*)\}"
@@ -69,7 +62,7 @@ def find_intersections(set_a, set_b):
     def process_interval(interval, other_set, key_1='original'):
         matches = find_matches(interval, other_set)
 
-        key_2 = 'alternative' if key_1 == 'original' else 'original'
+        key_2 = 'reference' if key_1 == 'original' else 'original'
 
         if matches:
             group_start = min([interval['start']] + [b['start'] for b in matches])
@@ -102,7 +95,7 @@ def find_intersections(set_a, set_b):
                 j += carry
                 i += 1
             else:
-                matches, carry = process_interval(interval_b, set_a[i:], 'alternative')
+                matches, carry = process_interval(interval_b, set_a[i:], 'reference')
                 i += carry
                 j += 1
             if matches:
