@@ -30,8 +30,6 @@ def sanitize_string(string):
 
 def find_intersections(set_a, set_b):
     intersections = []
-    used_a = set()  # Track used intervals from set_a
-    used_b = set()  # Track used intervals from set_b
 
     def check_interval_conditions(interval, other_interval):
         # Check for full containment

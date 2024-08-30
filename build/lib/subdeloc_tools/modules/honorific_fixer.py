@@ -16,7 +16,7 @@ def prepare_edit_dict(dt):
 
 	return result
 
-def fix_original(file, fixed):
+def fix_original(file, fixed, new_name="edited.ass"):
 	try:
 		subs = load_ass(file)
 		res = prepare_edit_dict(fixed)
@@ -27,6 +27,6 @@ def fix_original(file, fixed):
 			if str(nl) in ks:
 				line.text = res[str(nl)]
 
-		subs.save("edited.ass")
+		subs.save(new_name)
 	except Exception as e:
 		print(e)

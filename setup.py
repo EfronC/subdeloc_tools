@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='subdeloc_tools',  # Replace with your package’s name
-    version='0.1.0',
+    name='subdeloc_tools',
+    version='0.2.0',
     packages=find_packages(),
     install_requires=[
         "pysubs2"
