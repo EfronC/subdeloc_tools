@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-20.04,ubuntu-20.04,ubuntu-20.04,ubuntu-20.04,ubuntu-20.04,macos-11,windows-2019,windows-2019]
         python-version: [3.7, 3.8, 3.9, 3.10, 3.11]
         exclude:
           - os: macos-latest
@@ -44,7 +44,6 @@ jobs:
       - name: Build wheels
         env:
           CIBW_BUILD: cp3?-*  # Builds for Python 3.x (excluding 3.6)
-          CIBW_SKIP: cp36-*  # Skips Python 3.6
           CIBW_TEST_REQUIRES: pytest  # Replace with actual test dependencies
           CIBW_TEST_COMMAND: "pytest {project}/tests"  # Replace with your test command
         run: cibuildwheel --output-dir wheelhouse
