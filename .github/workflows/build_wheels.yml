@@ -10,16 +10,19 @@ on:
 
 jobs:
   build_wheels:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os[0] }}
     strategy:
       matrix:
-        os: [ubuntu-20.04,ubuntu-20.04,ubuntu-20.04,ubuntu-20.04,ubuntu-20.04,macos-11,windows-2019,windows-2019]
-        python-version: [3.7, 3.8, 3.9, 3.10, 3.11]
-        exclude:
-          - os: macos-latest
-            python-version: "3.7"
-          - os: macos-latest
-            python-version: "3.1"
+        os: 
+        - [ubuntu-20.04, manylinux_x86_64]
+        - [ubuntu-20.04, manylinux_aarch64]
+        - [ubuntu-20.04, manylinux_i686]
+        - [ubuntu-20.04, musllinux_x86_64]
+        - [ubuntu-20.04, musllinux_aarch64]
+        - [macos-11, macosx_*]
+        - [windows-2019, win_amd64]
+        - [windows-2019, win32]
+        python-version: ["cp36", "cp37", "cp38", "cp39", "cp310", "cp311"]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -43,9 +46,12 @@ jobs:
 
       - name: Build wheels
         env:
-          CIBW_BUILD: cp3?-*  # Builds for Python 3.x (excluding 3.6)
-          CIBW_TEST_REQUIRES: pytest  # Replace with actual test dependencies
-          CIBW_TEST_COMMAND: "pytest {project}/tests"  # Replace with your test command
+          CIBW_BUILD: ${{ matrix.python }}-${{ matrix.os[1] }}#cp3?-*  # Builds for Python 3.x (excluding 3.6)
+          CIBW_PRERELEASE_PYTHONS: True
+          CIBW_ARCHS_LINUX: auto aarch64
+          CIBW_ENVIRONMENT: CFLAGS='-O3 -g0 -mtune=generic -pipe -fPIC' LDFLAGS='-fPIC'
+          #CIBW_TEST_REQUIRES: pytest  # Replace with actual test dependencies
+          #CIBW_TEST_COMMAND: "python -m unittest"  # Replace with your test command
         run: cibuildwheel --output-dir wheelhouse
 
       - name: Upload wheels
