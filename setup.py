@@ -10,7 +10,7 @@ setup(
     author='Efrain Cardenas',  
     author_email='',
     description='Subtitles delocalizer tools.',
-    long_description=open("README.md").read(),
+    long_description=open("README.md", encoding='utf-8').read(),
     long_description_content_type="text/markdown",
     url="https://github.com/EfronC/subdeloc_tools",
     classifiers=[
