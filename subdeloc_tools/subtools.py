@@ -14,9 +14,9 @@ class SubTools:
 		"""
 		self.main_sub = main_sub
 		self.ref_sub = ref_sub
-		with open(honorifics_name) as f:
+		with open(honorifics_name, encoding='utf-8') as f:
 			self.honorifics = json.load(f)
-		with open(names_path) as f:
+		with open(names_path, encoding='utf-8') as f:
 			self.names = json.load(f)
 
 	def print_to_file(self, data, filename="result.json"):

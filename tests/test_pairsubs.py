@@ -1,11 +1,12 @@
 import unittest
 from subdeloc_tools.modules import pairsubs
 from tests.constants.pairsubs import *
+import os
 
 class TestPairSubs(unittest.TestCase):
     def setUp(self):
-        self.eng_file = "./tests/files/eng.ass"
-        self.jap_file = "./tests/files/jap.ass"
+        self.eng_file = "."+os.sep+"tests"+os.sep+"files"+os.sep+"eng.ass"
+        self.jap_file = "."+os.sep+"tests"+os.sep+"files"+os.sep+"jap.ass"
 
     def test_pair_files(self):
         result = pairsubs.pair_files(self.eng_file, self.jap_file)
