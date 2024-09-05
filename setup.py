@@ -2,10 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='subdeloc_tools',
-    version='0.2.0',
+    version='0.3.0',
     packages=find_packages(),
     install_requires=[
-        "pysubs2"
+        "pysubs2",
+        "modify-subs"
     ],
     author='Efrain Cardenas',  
     author_email='',
