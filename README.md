@@ -98,3 +98,7 @@ PairSubtitles JSON
   ...
 ]
 ```
+
+Sister projects:
+- [C Tools](https://github.com/EfronC/subdeloc_helper)
+- [Delocalizer](https://github.com/EfronC/Delocalizer)
