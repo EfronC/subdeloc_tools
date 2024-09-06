@@ -15,8 +15,12 @@ class Merger:
         self.streams = None
         self.file = None
         self.codec_name = None
+        self.filename = ""
 
-    def get_streams(self, fname):
+    def get_filename(self, f):
+        return f.split(os.sep)[-1]
+
+    def get_streams(self):
         try:
             if self.status == self.STATUSES["INITIALIZED"]:
                 return self.streams
@@ -25,7 +29,7 @@ class Merger:
         except Exception as e:
             print(e)
             return False
-
+    
     def mux(self, f, subtitle, params):
         try:
             if self.status == self.STATUSES["INITIALIZED"] and os.path.isfile(subtitle):
@@ -121,6 +125,7 @@ class Merger:
 
     def set_file(self, f):
         try:
+            self.filename = get_filename(str(f))
             info = json.loads(subprocess.check_output(["ffprobe", "-v", "quiet", "-print_format", "json", "-show_streams", f]))
             self.streams = info
             self.status = self.STATUSES["INITIALIZED"]

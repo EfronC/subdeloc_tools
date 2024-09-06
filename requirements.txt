@@ -1,2 +1,2 @@
-modify-subs==0.3.0
+modify-subs==0.4.0
 pysubs2==1.7.3

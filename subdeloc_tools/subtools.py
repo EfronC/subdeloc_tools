@@ -49,23 +49,6 @@ class SubTools:
 
 		return subs
 
-	# def find_key_by_string(self, dictionary, target_string, search_array):
-	# 	"""
-	# 	Finds the key in a dictionary whose value (an array of strings) contains the target string.
-		
-	# 	Args:
-	# 		dictionary (dict): The dictionary to search.
-	# 		target_string (str): The string to search for.
-	# 		search_array (str): The key in the nested dictionary to search for the string.
-
-	# 	Returns:
-	# 		str or None: The key that contains the target string in its array, or None if not found.
-	# 	"""
-	# 	for key, nested_dict in dictionary.get("honorifics", {}).items():
-	# 		if target_string in nested_dict.get(search_array, []):
-	# 			return key
-	# 	return None
-
 	def check_sub(self, sub, honor, reference_text):
 		"""Checks and replaces honorifics in the subtitles."""
 		honorific = find_key_by_string(self.honorifics, honor, "kanjis")
