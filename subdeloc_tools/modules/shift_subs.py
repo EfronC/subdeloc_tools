@@ -11,9 +11,11 @@ def load_ass(file_path):
 # Shift subs by an amount of seconds
 # time in seconds
 # thresh in milliseconds
-def fix_jap(path: str, time: int, threshold: int):
+def shift_sub(path: str, time: int, threshold: int):
+	fname = "shifted.ass"
 	subs = load_ass(path)
 	for line in subs:
 		if line.start > threshold:
 			line.shift(s=time)
-	subs.save("shifted.ass")
+	subs.save(fname)
+	return fname

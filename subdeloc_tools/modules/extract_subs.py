@@ -4,7 +4,7 @@ merger = Merger()
 
 def get_index(file: str, language: str="eng"):
 	try:
-		streams = merger.get_streams(file)
+		streams = merger.get_streams()
 		index = merger.get_language_index(language)
 
 		return index
