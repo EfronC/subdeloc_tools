@@ -64,6 +64,20 @@ class Merger:
             self.status = self.STATUSES["INITIALIZED"]
             return False
 
+    def print_language_indexes(self) -> int:
+        try:
+            if self.status == self.STATUSES["INITIALIZED"] and self.streams:
+                for i in self.streams["streams"]:
+                    if i["codec_type"] == "subtitle":
+                        if "language" in i["tags"].keys():
+                            print(i["index"], "\t|", i["tags"]["language"])
+                        else:
+                            print(i["index"], "\t|", "unknown")
+            return 0
+        except Exception as e:
+            print(e)
+            return -1
+
     def get_language_index(self, language: str) -> int:
         try:
             if self.status == self.STATUSES["INITIALIZED"] and self.streams:
@@ -125,7 +139,7 @@ class Merger:
 
     def set_file(self, f):
         try:
-            self.filename = get_filename(str(f))
+            self.filename = self.get_filename(str(f))
             info = json.loads(subprocess.check_output(["ffprobe", "-v", "quiet", "-print_format", "json", "-show_streams", f]))
             self.streams = info
             self.status = self.STATUSES["INITIALIZED"]
