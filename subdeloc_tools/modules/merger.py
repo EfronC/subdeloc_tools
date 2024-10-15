@@ -75,9 +75,13 @@ class Merger:
             print(e)
             return -1
 
-    def get_language_index(self, language: str) -> int:
+    def get_language_index(self, language: str, selected_index: int=0) -> int:
         try:
             if self.status == self.STATUSES["INITIALIZED"] and self.streams:
+                if selected_index:
+                    self.codec_name = self.streams["streams"][selected_index]["codec_name"]
+                    return selected_index
+                    
                 index = -1
                 f_sub = -1
                 cn = None
