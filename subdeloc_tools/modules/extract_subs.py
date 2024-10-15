@@ -2,7 +2,7 @@ from .merger import Merger
 
 merger = Merger()
 
-def get_index(file: str, language: str="eng"):
+def get_index(file: str, language: str="eng") -> int:
 	try:
 		streams = merger.get_streams()
 		index = merger.get_language_index(language)
@@ -25,7 +25,7 @@ def extract_sub(f, index):
 		subfile = merger.demux(f, index, outputf)
 	return subfile
 
-def extract_subs_by_lang(f:str, lang:str="eng") -> str:
+def extract_subs_by_lang(f:str, lang:str="eng") -> bool:
 	try:
 		merger.set_file(f)
 		index = get_index(f, lang)
@@ -39,7 +39,7 @@ def extract_subs_by_lang(f:str, lang:str="eng") -> str:
 		print(e)
 		return False
 
-def extract_subs_by_index(f:str, index:int) -> str:
+def extract_subs_by_index(f:str, index:int) -> bool:
 	try:
 		res = extract_sub(f, index)
 		if res:

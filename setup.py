@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='subdeloc_tools',
-    version='0.5.0',
+    version='0.6.0',
     packages=find_packages(),
     install_requires=[
         "pysubs2",
@@ -16,7 +16,7 @@ setup(
     url="https://github.com/EfronC/subdeloc_tools",
     classifiers=[
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',  # License type
+        'License :: OSI Approved :: GPL-3.0 License',  # License type
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.7',

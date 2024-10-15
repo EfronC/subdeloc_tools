@@ -69,10 +69,7 @@ class Merger:
             if self.status == self.STATUSES["INITIALIZED"] and self.streams:
                 for i in self.streams["streams"]:
                     if i["codec_type"] == "subtitle":
-                        if "language" in i["tags"].keys():
-                            print(i["index"], "\t|", i["tags"]["language"])
-                        else:
-                            print(i["index"], "\t|", "unknown")
+                        print(i["index"], "\t|", i["tags"].get("language", "Unknown"), "\t|", i["tags"].get("title", "Unknown"))
             return 0
         except Exception as e:
             print(e)
