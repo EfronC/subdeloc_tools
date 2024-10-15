@@ -68,3 +68,8 @@ class SubTools:
 
 						orig["text"] = orig["text"].strip()
 		return True
+
+	@classmethod
+	def get_default_honorifics_file(self):
+		with open("./honorifics.json", encoding='utf-8') as f:
+			return json.load(f)

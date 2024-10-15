@@ -1,6 +1,6 @@
 import pysubs2
 
-def load_ass(file_path):
+def load_ass(file_path:str):
     try:
         subs = pysubs2.load(file_path)
         return subs
@@ -16,7 +16,7 @@ def prepare_edit_dict(dt):
 
 	return result
 
-def fix_original(file, fixed, new_name="edited.ass"):
+def fix_original(file, fixed, new_name="edited.ass") -> str:
 	try:
 		subs = load_ass(file)
 		res = prepare_edit_dict(fixed)
@@ -28,5 +28,7 @@ def fix_original(file, fixed, new_name="edited.ass"):
 				line.text = res[str(nl)]
 
 		subs.save(new_name)
+		return new_name
 	except Exception as e:
 		print(e)
+		return ''
