@@ -13,12 +13,13 @@ class SubTools:
 	honorifics = {}
 	names = {}
 
-	def __init__(self, main_sub, ref_sub, names_path, honorifics_name, load_from_lambda=False):
+	def __init__(self, main_sub, ref_sub, names_path, honorifics_name, output_name, load_from_lambda=False):
 		"""
 		If load_from_lambda is True, names_path and honorifics_name should be the address to a public HTTP lambda. TODO
 		"""
 		self.main_sub = main_sub
 		self.ref_sub = ref_sub
+		self.output_name = output_name
 		with open(honorifics_name, encoding='utf-8') as f:
 			self.honorifics = json.load(f)
 		with open(names_path, encoding='utf-8') as f:
@@ -33,7 +34,7 @@ class SubTools:
 		# Assuming pairsubs.pair_files is defined elsewhere and returns a list of subtitles
 		res = pairsubs.pair_files(self.main_sub, self.ref_sub)
 		s = self.search_honorifics(res)
-		return honorific_fixer.fix_original(self.main_sub, s)
+		return honorific_fixer.fix_original(self.main_sub, s, self.output_name)
 
 
 	def prepare_honor_array(self):
