@@ -3,13 +3,16 @@ import glob
 
 setup(
     name='subdeloc_tools',
-    version='0.8.0',
+    version='0.8.1',
     packages=find_packages(),
     install_requires=[
         "pysubs2",
         "modify-subs"
     ],
-    data_files=[('files', glob.glob('subdeloc_tools/files/**')),],
+    include_package_data=True,
+    package_data={
+        'subdeloc_tools': ['samples/*.json'],
+    },
     author='Efrain Cardenas',  
     author_email='',
     description='Subtitles delocalizer tools.',
