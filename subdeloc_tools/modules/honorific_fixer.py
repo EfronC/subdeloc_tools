@@ -1,6 +1,8 @@
 import pysubs2
+from typing import Dict, Union, List
+from subdeloc_tools.modules.types.types import MatchesVar
 
-def load_ass(file_path:str):
+def load_ass(file_path:str) -> pysubs2.SSAFile:
     try:
         subs = pysubs2.load(file_path)
         return subs
@@ -8,7 +10,7 @@ def load_ass(file_path:str):
         print(f"Error loading file '{file_path}': {e}")
         return None
 
-def prepare_edit_dict(dt):
+def prepare_edit_dict(dt: dict) -> Dict[str, str]:
 	result = {}
 	for i in dt:
 		for j in i["original"]:
@@ -16,7 +18,7 @@ def prepare_edit_dict(dt):
 
 	return result
 
-def fix_original(file, fixed, new_name="edited.ass") -> str:
+def fix_original(file: str, fixed: List[MatchesVar], new_name="edited.ass") -> str:
 	try:
 		subs = load_ass(file)
 		res = prepare_edit_dict(fixed)

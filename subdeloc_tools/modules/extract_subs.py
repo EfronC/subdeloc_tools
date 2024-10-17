@@ -12,7 +12,7 @@ def get_index(file: str, language: str="eng") -> int:
 		print(e)
 		return -1
 
-def extract_sub(f, index):
+def extract_sub(f: str, index: int) -> str:
 	subfile = False
 	if index > -1:
 		if merger.codec_name == "ass":

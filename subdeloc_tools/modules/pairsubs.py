@@ -1,10 +1,12 @@
 import pysubs2
 import json
 import re
+from typing import Dict, Union, List, Tuple
+from subdeloc_tools.modules.types.types import IntervalVar, MatchesVar, SubtitleSetVar
 
 MARGIN = 1000
 
-def load_ass(file_path):
+def load_ass(file_path: str) -> pysubs2.SSAFile:
     try:
         subs = pysubs2.load(file_path)
         return subs
@@ -12,7 +14,7 @@ def load_ass(file_path):
         print(f"Error loading file '{file_path}': {e}")
         return None
 
-def sanitize_string(string):
+def sanitize_string(string: str) -> str:
     # Match substrings enclosed in {}
     pattern = r"\{([^{}]*)\}"
 
@@ -22,7 +24,7 @@ def sanitize_string(string):
     return result
 
 # Intersect functions
-def check_interval_conditions(interval, other_interval):
+def check_interval_conditions(interval: IntervalVar, other_interval: IntervalVar) -> Tuple[bool, bool]:
     # Check for full containment
     fully_contained = (
         (interval['start'] >= other_interval['start'] and interval['end'] <= other_interval['end']) or
@@ -37,7 +39,7 @@ def check_interval_conditions(interval, other_interval):
 
     return fully_contained, within_margin
 
-def find_matches(interval, other_set):
+def find_matches(interval: IntervalVar, other_set: IntervalVar) -> List[IntervalVar]:
     matches = []
     for idx, other_interval in enumerate(other_set):
         
@@ -48,7 +50,7 @@ def find_matches(interval, other_set):
 
     return matches
 
-def process_interval(interval, other_set, key_1='original'):
+def process_interval(interval: IntervalVar, other_set: IntervalVar, key_1: str='original') -> Tuple[MatchesVar, int]:
     matches = find_matches(interval, other_set)
 
     key_2 = 'reference' if key_1 == 'original' else 'original'
@@ -64,7 +66,7 @@ def process_interval(interval, other_set, key_1='original'):
             key_2: matches
         }, len(matches)
 
-def find_intersections(set_a, set_b):
+def find_intersections(set_a: SubtitleSetVar, set_b: SubtitleSetVar) -> List[MatchesVar]:
     intersections = []
 
     # Pointers for iterating through set A and set B
@@ -101,7 +103,7 @@ def find_intersections(set_a, set_b):
     return intersections
 
 # Main methods
-def group_lines_by_time(sub1, sub2):
+def group_lines_by_time(sub1: pysubs2.SSAFile, sub2: pysubs2.SSAFile) -> List[MatchesVar]:
     intervals = []
     sub_pivot = sub2
     current = 0
@@ -117,7 +119,7 @@ def group_lines_by_time(sub1, sub2):
 
     return find_intersections(set_a, set_b)
 
-def pair_files(s1: str, s2: str):
+def pair_files(s1: str, s2: str) -> List[MatchesVar]:
     sub1 = load_ass(s1)
     sub2 = load_ass(s2)
 
