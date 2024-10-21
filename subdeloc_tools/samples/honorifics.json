@@ -6,7 +6,7 @@
 		},
 		"sama": {
 			"kanjis": ["さま", "様"],
-			"alternatives": ["Lady", "Lord", "Sir", "Ma'am"]
+			"alternatives": ["Lady", "Lord", "Sir", "Ma'am", "Prince", "Princess"]
 		},
 		"kun": {
 			"kanjis": ["くん", "君"],
@@ -26,11 +26,11 @@
 		},
 		"sensei": {
 			"kanjis": ["先生", "せんせい"],
-			"alternatives": ["Teacher", "Master", "Doctor", "Professor"]
+			"alternatives": ["Teacher", "Master", "Doctor", "Professor", "Mr.", "Ms."]
 		},
 		"dono": {
 			"kanjis": ["殿"],
-			"alternatives": ["Sir"]
+			"alternatives": ["Sir", "Ma'am", "Mistress"]
 		},
 		"nee": {
 			"kanjis": ["姉"],

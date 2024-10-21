@@ -3,7 +3,7 @@ import glob
 
 setup(
     name='subdeloc_tools',
-    version='0.8.1',
+    version='0.9.0',
     packages=find_packages(),
     install_requires=[
         "pysubs2",
@@ -21,7 +21,7 @@ setup(
     url="https://github.com/EfronC/subdeloc_tools",
     classifiers=[
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',  # License type
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',  # License type
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.8',
