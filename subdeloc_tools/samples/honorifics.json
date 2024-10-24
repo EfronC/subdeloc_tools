@@ -6,7 +6,7 @@
 		},
 		"sama": {
 			"kanjis": ["さま", "様"],
-			"alternatives": ["Lady", "Lord", "Sir", "Ma'am", "Prince", "Princess"]
+			"alternatives": ["Lady", "Lord", "Sir", "Ma'am", "Prince", "Princess", "Great"]
 		},
 		"kun": {
 			"kanjis": ["くん", "君"],
@@ -26,7 +26,7 @@
 		},
 		"sensei": {
 			"kanjis": ["先生", "せんせい"],
-			"alternatives": ["Teacher", "Master", "Doctor", "Professor", "Mr.", "Ms."]
+			"alternatives": ["Teacher", "Master", "Doctor", "Professor", "Mr.", "Ms.", "Miss", "Mister"]
 		},
 		"dono": {
 			"kanjis": ["殿"],
@@ -34,51 +34,51 @@
 		},
 		"nee": {
 			"kanjis": ["姉"],
-			"alternatives": ["Big sis", "Sis"]
+			"alternatives": ["Big sis", "Sis", "Sister"]
 		},
 	    "onee": {
 	    	"kanjis": ["お姉"],
-	    	"alternatives": ["Big sis", "Sis"]
+	    	"alternatives": ["Big sis", "Sis", "Sister"]
 	    },
 	    "neechan": {
 	    	"kanjis": ["姉ちゃん"],
-	    	"alternatives": ["Big sis", "Sis"]
+	    	"alternatives": ["Big sis", "Sis", "Sister"]
 	    },
 	    "oneechan": {
 	    	"kanjis": ["お姉ちゃん"],
-	    	"alternatives": ["Big sis", "Sis"]
+	    	"alternatives": ["Big sis", "Sis", "Sister"]
 	    },
 	    "neesan": {
 	    	"kanjis": ["姉さん"],
-	    	"alternatives": ["Big sis", "Sis"]
+	    	"alternatives": ["Big sis", "Sis", "Sister"]
 	    },
 	    "oneesan": {
 	    	"kanjis": ["お姉さん"],
-	    	"alternatives": ["Big sis", "Sis"]
+	    	"alternatives": ["Big sis", "Sis", "Sister"]
 	    },
 	    "nii": {
 	    	"kanjis": ["兄"],
-	    	"alternatives": ["Big bro", "Bro"]
+	    	"alternatives": ["Big bro", "Bro", "Brother"]
 	    },
 	    "onii": {
 	    	"kanjis": ["お兄"],
-	    	"alternatives": ["Big bro", "Bro"]
+	    	"alternatives": ["Big bro", "Bro", "Brother"]
 	    },
 	    "niichan": {
 	    	"kanjis": ["兄ちゃん"],
-	    	"alternatives": ["Big bro", "Bro"]
+	    	"alternatives": ["Big bro", "Bro", "Brother"]
 	    },
 	    "oniichan": {
 	    	"kanjis": ["お兄ちゃん"],
-	    	"alternatives": ["Big bro", "Bro"]
+	    	"alternatives": ["Big bro", "Bro", "Brother"]
 	    },
 	    "niisan": {
 	    	"kanjis": ["兄さん"],
-	    	"alternatives": ["Big bro", "Bro"]
+	    	"alternatives": ["Big bro", "Bro", "Brother"]
 	    },
 	    "oniisan": {
 	    	"kanjis": ["お兄さん"],
-	    	"alternatives": ["Big bro", "Bro"]
+	    	"alternatives": ["Big bro", "Bro", "Brother"]
 	    },
 	    "otosan": {
 	    	"kanjis": ["お父さん"],

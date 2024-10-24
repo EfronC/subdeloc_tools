@@ -2,7 +2,7 @@ import pysubs2
 import json
 import re
 from typing import Dict, Union, List, Tuple
-from subdeloc_tools.modules.types.types import IntervalVar, MatchesVar, SubtitleSetVar
+from subdeloc_tools.common.types.types import IntervalVar, MatchesVar, SubtitleSetVar
 
 MARGIN = 1000
 
