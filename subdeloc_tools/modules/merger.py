@@ -3,7 +3,7 @@ import sys
 import json
 import os
 from typing import Dict, Union, List
-from subdeloc_tools.modules.types.types import StreamsVar
+from subdeloc_tools.common.types.types import StreamsVar
 
 
 class Merger:
