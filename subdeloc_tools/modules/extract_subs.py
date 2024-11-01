@@ -3,6 +3,9 @@ from .merger import Merger
 merger = Merger()
 
 def get_index(file: str, language: str="eng") -> int:
+	"""
+	Find index of a sub based on language code.
+	"""
 	try:
 		streams = merger.get_streams()
 		index = merger.get_language_index(language)
@@ -13,6 +16,9 @@ def get_index(file: str, language: str="eng") -> int:
 		return -1
 
 def extract_sub(f: str, index: int) -> str:
+	"""
+	Extract subtitle track based on index.
+	"""
 	subfile = False
 	if index > -1:
 		if merger.codec_name == "ass":
@@ -26,6 +32,9 @@ def extract_sub(f: str, index: int) -> str:
 	return subfile
 
 def extract_subs_by_lang(f:str, lang:str="eng") -> bool:
+	"""
+	Extract subtitle track based on language code.
+	"""
 	try:
 		merger.set_file(f)
 		index = get_index(f, lang)
@@ -40,6 +49,9 @@ def extract_subs_by_lang(f:str, lang:str="eng") -> bool:
 		return False
 
 def extract_subs_by_index(f:str, index:int) -> bool:
+	"""
+	Main function to extract.
+	"""
 	try:
 		res = extract_sub(f, index)
 		if res:
