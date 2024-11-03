@@ -77,14 +77,15 @@ def process_interval(interval: IntervalVar, other_set: IntervalVar, key_1: str='
         }, len(matches)
 
 def update_matches(matches: MatchesVar, interval: IntervalVar, original:bool) -> bool:
-    if original:
-        fully_contained, within_margin = check_interval_conditions(interval, matches["reference"][-1])
-        if fully_contained or within_margin:
-            matches["original"].append(interval)
-    else:
-        fully_contained, within_margin = check_interval_conditions(interval, matches["original"][-1])
-        if fully_contained or within_margin:
-            matches["reference"].append(interval)
+    if matches:
+        if original:
+            fully_contained, within_margin = check_interval_conditions(interval, matches["reference"][-1])
+            if fully_contained or within_margin:
+                matches["original"].append(interval)
+        else:
+            fully_contained, within_margin = check_interval_conditions(interval, matches["original"][-1])
+            if fully_contained or within_margin:
+                matches["reference"].append(interval)
     return True
 
 def find_intersections(set_a: SubtitleSetVar, set_b: SubtitleSetVar) -> List[MatchesVar]:
@@ -117,22 +118,22 @@ def find_intersections(set_a: SubtitleSetVar, set_b: SubtitleSetVar) -> List[Mat
                 intersections.append(matches)
         else:
             if interval_a["start"] <= interval_b["start"]:
-                update_matches(intersections[-1], interval_a, True)
+                update_matches((intersections or [None])[-1], interval_a, True)
                 i += 1
             else:
-                update_matches(intersections[-1], interval_b, False)
+                update_matches((intersections or [None])[-1], interval_b, False)
                 j += 1
 
     # Do missing step for subs at the end.
     if i < len(set_a):
         while i < len(set_a):
             interval_a = set_a[i]
-            update_matches(intersections[-1], interval_a, True)
+            update_matches((intersections or [None])[-1], interval_a, True)
             i += 1
     else:
         while j < len(set_b):
             interval_b = set_b[j]
-            update_matches(intersections[-1], interval_b, False)
+            update_matches((intersections or [None])[-1], interval_b, False)
             j += 1
 
     return intersections
