@@ -153,6 +153,9 @@ def group_lines_by_time(sub1: pysubs2.SSAFile, sub2: pysubs2.SSAFile) -> List[Ma
         if line.type == "Dialogue":
             set_b.append({"start": line.start, "end": line.end, "text":sanitize_string(line.text), "nl": nl})
 
+    set_a.sort(key=lambda d: d["start"])
+    set_b.sort(key=lambda d: d["start"])
+
     return find_intersections(set_a, set_b)
 
 def pair_files(s1: str, s2: str) -> List[MatchesVar]:
