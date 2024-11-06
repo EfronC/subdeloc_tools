@@ -26,7 +26,7 @@ def sanitize_string(string: str) -> str:
 
     # Replace all occurrences of the pattern using the replace function
     result = re.sub(pattern, "", string)
-    result = re.sub(r"\\.", "", result)
+    result = re.sub(r"\\.", " ", result)
     return result
 
 # Intersect functions
