@@ -26,6 +26,7 @@ def sanitize_string(string: str) -> str:
 
     # Replace all occurrences of the pattern using the replace function
     result = re.sub(pattern, "", string)
+    result = re.sub(r"\s\\.", "", result)
     result = re.sub(r"\\.", " ", result)
     return result
 
@@ -148,10 +149,10 @@ def group_lines_by_time(sub1: pysubs2.SSAFile, sub2: pysubs2.SSAFile) -> List[Ma
 
     for nl,line in enumerate(sub1):
         if line.type == "Dialogue":
-            set_a.append({"start": line.start, "end": line.end, "text":sanitize_string(line.text), "nl": nl})
+            set_a.append({"start": line.start, "end": line.end, "text":sanitize_string(line.text), "original":line.text, "nl": nl})
     for nl,line in enumerate(sub2):
         if line.type == "Dialogue":
-            set_b.append({"start": line.start, "end": line.end, "text":sanitize_string(line.text), "nl": nl})
+            set_b.append({"start": line.start, "end": line.end, "text":sanitize_string(line.text), "original":line.text, "nl": nl})
 
     set_a.sort(key=lambda d: d["start"])
     set_b.sort(key=lambda d: d["start"])

@@ -77,27 +77,29 @@ class Fixer:
 	def flow_honor(self, pair: MatchesVar) -> MatchesVar:
 		for orig in pair["original"]:
 			sentence = orig["text"]
+			original = orig["original"]
 			for name in self.check_names(sentence):
 				for ref in pair["reference"]:
 					honor = next(self.search_honor(ref["text"], self.names[name]), None)
 					if honor:
-						sentence = self.fix_sentence(sentence, name, f"{name}-{honor}", honor)
+						original = self.fix_sentence(original, name, f"{name}-{honor}", honor)
 						break
 
-			orig["text"] = sentence
+			orig["original"] = original
 		return pair
 
 	def flow_tokens(self, pair: MatchesVar) -> MatchesVar:
 		for orig in pair["original"]:
 			sentence = orig["text"]
+			original = orig["original"]
 			for name in self.check_names(sentence):
 				for ref in pair["reference"]:
 					honor = next(self.search_tokens(ref["text"], name), None)
 					if honor:
-						sentence = self.fix_sentence(sentence, name, f"{name}-{honor}", honor)
+						original = self.fix_sentence(original, name, f"{name}-{honor}", honor)
 						break
 
-			orig["text"] = sentence
+			orig["original"] = original
 		return pair
 
 	def fix(self) -> MatchesVar:

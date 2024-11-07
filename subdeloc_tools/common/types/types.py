@@ -8,6 +8,7 @@ class IntervalVar(TypedDict):
 	start: int
 	end: int
 	text: str
+	original: str
 	nl: int
 
 class MatchesVar(TypedDict):

@@ -20,7 +20,7 @@ def prepare_edit_dict(dt: dict) -> Dict[str, str]:
 	result = {}
 	for i in dt:
 		for j in i["original"]:
-			result[str(j["nl"])] = j["text"]
+			result[str(j["nl"])] = j["original"]
 
 	return result
 
