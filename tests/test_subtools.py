@@ -29,7 +29,7 @@ class TestSubTools(unittest.TestCase):
             "output.ass"
         )
         s = ST.search_honorifics(RESULT)
-        self.assertEqual(s[1]['original'][0]['text'], "World-dono")
+        self.assertEqual(s[1]['original'][0]['original'], "World-dono")
 
     def test_search_tokens(self):
         ST = st.SubTools(
@@ -41,7 +41,7 @@ class TestSubTools(unittest.TestCase):
             jap_ref=False
         )
         s = ST.search_honorifics(RESULT)
-        self.assertEqual(s[1]['original'][0]['text'], "World-dono")
+        self.assertEqual(s[1]['original'][0]['original'], "World-dono")
 
     def test_default_honorifics_file(self):
         hfile = st.SubTools.get_default_honorifics_file()
