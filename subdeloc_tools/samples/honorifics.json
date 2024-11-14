@@ -30,7 +30,7 @@
 		},
 		"dono": {
 			"kanjis": ["殿"],
-			"alternatives": ["Sir", "Ma'am", "Mistress"]
+			"alternatives": ["Sir", "Ma'am", "Mistress", "Milord", "Milady", "Lady", "Lord"]
 		},
 		"nee": {
 			"kanjis": ["姉"],

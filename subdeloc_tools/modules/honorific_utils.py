@@ -53,9 +53,10 @@ class Fixer:
 		return sentence
 
 	def fix_sentence(self, sentence: str, name: str, new_word: str, honorific: str) -> str:
-		sentence = self.replace_word(name, new_word, sentence)
-		sentence = self.replace_english_honorifics(sentence, honorific)
-		sentence = sentence.strip()
+		if not new_word in sentence:
+			sentence = self.replace_word(name, new_word, sentence)
+			sentence = self.replace_english_honorifics(sentence, honorific)
+			sentence = sentence.strip()
 
 		return sentence
 
