@@ -2,15 +2,12 @@ import pysubs2
 import json
 import re
 import os
-import logging
 
 from typing import Dict, Union, List, Tuple
 from subdeloc_tools.common.types.types import IntervalVar, MatchesVar, SubtitleSetVar
+from subdeloc_tools.common.utils.logger_config import logger
 
 MARGIN = int(os.getenv("PAIR_MARGIN", 1000))
-
-#logger = logging.getLogger(__name__)
-#logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
 
 def load_ass(file_path: str) -> pysubs2.SSAFile:
     try:
@@ -48,17 +45,19 @@ def check_interval_conditions(interval: IntervalVar, other_interval: IntervalVar
 
 def find_matches(interval: IntervalVar, other_set: List[IntervalVar]) -> List[IntervalVar]:
     matches = []
+    logger.debug('Checking A: '+ interval["text"])
     for idx, other_interval in enumerate(other_set):
-        
         fully_contained, within_margin = check_interval_conditions(interval, other_interval)
 
         if fully_contained or within_margin:
+            logger.debug('Matched B: '+ other_interval["text"])
             matches.append(other_interval)
 
         # Break happens when next interval is after the end of current, and not within the margin
         if other_interval["start"] >= interval["end"] and not within_margin:
             break
 
+    logger.debug('Complete Matching')
     return matches
 
 def process_interval(interval: IntervalVar, other_set: IntervalVar, key_1: str='original') -> Tuple[MatchesVar, int]:
@@ -67,8 +66,10 @@ def process_interval(interval: IntervalVar, other_set: IntervalVar, key_1: str='
     key_2 = 'reference' if key_1 == 'original' else 'original'
 
     if matches:
+        logger.debug("Matches:"+ str(interval["text"]) + " | " + str(len(matches)))
         group_start = min([interval['start']] + [b['start'] for b in matches])
         group_end = max([interval['end']] + [b['end'] for b in matches])
+        logger.debug("Start:"+ str(group_start) + " - End:" + str(group_end))
 
         return {
             'start': group_start,
@@ -76,6 +77,7 @@ def process_interval(interval: IntervalVar, other_set: IntervalVar, key_1: str='
             key_1: [interval],
             key_2: matches
         }, len(matches)
+    return None, 0
 
 def update_matches(matches: MatchesVar, interval: IntervalVar, original:bool) -> bool:
     if matches:
@@ -160,6 +162,7 @@ def group_lines_by_time(sub1: pysubs2.SSAFile, sub2: pysubs2.SSAFile) -> List[Ma
     return find_intersections(set_a, set_b)
 
 def pair_files(s1: str, s2: str) -> List[MatchesVar]:
+    logger.debug("Margin: {}".format(MARGIN))
     sub1 = load_ass(s1)
     sub2 = load_ass(s2)
 

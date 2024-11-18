@@ -10,7 +10,6 @@ from subdeloc_tools.modules import pairsubs
 from subdeloc_tools.modules import honorific_fixer
 from subdeloc_tools.modules import honorific_utils
 from subdeloc_tools.common.types.types import MatchesVar
-from modify_subs import find_key_by_string_wrapper as find_key_by_string
 
 HONORIFICS_PATH = pkg_resources.resource_filename('subdeloc_tools', 'samples/honorifics.json')
 

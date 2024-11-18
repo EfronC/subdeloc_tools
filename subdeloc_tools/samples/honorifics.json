@@ -6,7 +6,7 @@
 		},
 		"sama": {
 			"kanjis": ["さま", "様"],
-			"alternatives": ["Lady", "Lord", "Sir", "Ma'am", "Prince", "Princess", "Great"]
+			"alternatives": ["Lady", "Lord", "Sir", "Ma'am", "Prince", "Princess", "Great", "Master"]
 		},
 		"kun": {
 			"kanjis": ["くん", "君"],

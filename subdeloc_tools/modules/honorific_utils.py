@@ -2,6 +2,7 @@ import re
 
 from subdeloc_tools.common.types.types import MatchesVar
 from subdeloc_tools.common.decorators.decorators import decremental
+from subdeloc_tools.common.utils.logger_config import logger
 
 class Fixer:
 	def __init__(self, honorifics_json: dict, names: dict, pair: MatchesVar=None, tokens: bool=False):
@@ -54,6 +55,7 @@ class Fixer:
 
 	def fix_sentence(self, sentence: str, name: str, new_word: str, honorific: str) -> str:
 		if not new_word in sentence:
+			logger.debug("Replacing {} for {} in {}".format(name, new_word, sentence))
 			sentence = self.replace_word(name, new_word, sentence)
 			sentence = self.replace_english_honorifics(sentence, honorific)
 			sentence = sentence.strip()
