@@ -1,6 +1,7 @@
 import pysubs2
 from typing import Dict, Union, List
 from subdeloc_tools.common.types.types import MatchesVar
+from subdeloc_tools.common.utils.logger_config import logger
 
 def load_ass(file_path:str) -> pysubs2.SSAFile:
 	"""
