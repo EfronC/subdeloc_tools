@@ -1,2 +1,3 @@
 modify-subs==0.4.0
 pysubs2==1.7.3
+appdirs==1.4.4
