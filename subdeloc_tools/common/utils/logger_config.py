@@ -3,7 +3,7 @@ import os
 from appdirs import user_log_dir
 
 # Check if logging is enabled
-logging_enabled = os.getenv("LOGGING", "1") == "1"
+logging_enabled = os.getenv("LOGGING", "0") == "1"
 
 # Get custom log directory from environment or use platform-specific default
 default_log_dir = user_log_dir(appname="subdeloc_tools", appauthor="delocalizer")
@@ -27,7 +27,7 @@ if logging_enabled:
     )
 
     # Create a logger instance
-    logger = logging.getLogger("my_project_logger")
+    logger = logging.getLogger("delocalizer_tools")
 else:
     # Create a dummy logger that does nothing
     class DummyLogger:

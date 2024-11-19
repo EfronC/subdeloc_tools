@@ -18,7 +18,7 @@ class TestSubTools(unittest.TestCase):
         self.assertEqual(ST.main_sub, "."+os.sep+"tests"+os.sep+"files"+os.sep+"eng.ass")
         self.assertEqual(ST.ref_sub, "."+os.sep+"tests"+os.sep+"files"+os.sep+"jap.ass")
         self.assertEqual(ST.honorifics["honorifics"]["san"]["kanjis"][0], "さん")
-        self.assertEqual(ST.names["Hello"], "こんにちは")
+        self.assertEqual(ST.names["Hello"], ["こんにちは"])
 
     def test_search_honorifics(self):
         ST = st.SubTools(
