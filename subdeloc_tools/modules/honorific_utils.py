@@ -1,4 +1,5 @@
 import re
+from typing import List
 
 from subdeloc_tools.common.types.types import MatchesVar
 from subdeloc_tools.common.decorators.decorators import decremental
@@ -55,7 +56,7 @@ class Fixer:
 
 	def fix_sentence(self, sentence: str, name: str, new_word: str, honorific: str) -> str:
 		if not new_word in sentence:
-			logger.debug("Replacing {} for {} in {}".format(name, new_word, sentence))
+			logger.debug("{} -> {} | {}".format(name, new_word, sentence))
 			sentence = self.replace_word(name, new_word, sentence)
 			sentence = self.replace_english_honorifics(sentence, honorific)
 			sentence = sentence.strip()
@@ -64,11 +65,12 @@ class Fixer:
 
 	# -------------------------- Honor ----------------------------
 
-	def search_honor(self, sentence: str, name: str) -> str:
+	def search_honor(self, sentence: str, names: List[str]) -> str:
 		for honor in self.honor_list:
 			for h in self.honorifics[honor]:
-				if name+h in sentence:
-					yield honor
+				for name in names:
+					if name+h in sentence:
+						yield honor
 
 	# -------------------- Tokens ---------------------------------
 	def search_tokens(self, sentence: str, name: str):
