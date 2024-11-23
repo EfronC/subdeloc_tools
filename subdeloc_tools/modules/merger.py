@@ -59,7 +59,7 @@ class Merger:
         try:
             sfiles = self.get_kept_subs()
             filename = self.filename
-            newfilename = "."+os.sep+path+os.sep+filename + '.mkv'
+            newfilename = path+os.sep+filename + '.mkv'
 
             subparams = self.generate_subs_params(sfiles)
 
@@ -69,7 +69,7 @@ class Merger:
             print(e)
             return []
 
-    def mux(self, f: str, subtitle: str, path: str = "Finished") -> bool:
+    def mux(self, f: str, subtitle: str, path: str = "./Finished") -> bool:
         try:
             if self.status == self.STATUSES["INITIALIZED"] and os.path.isfile(subtitle) and os.path.isfile(f) and os.path.exists(path):
                 params = self.generate_params(path)
