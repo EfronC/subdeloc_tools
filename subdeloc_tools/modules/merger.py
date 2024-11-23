@@ -19,6 +19,13 @@ class Merger:
         self.codec_name = None
         self.filename = ""
 
+    def get_subtitle_indexes(self) -> List[str]:
+        b_indexes = subprocess.check_output(["ffprobe", "-v", "error", "-select_streams", "s", "-show_entries", "stream=index", "-of", "csv=p=0", self.file])
+        indexes = b_indexes.decode("utf-8").split("\n")
+        indexes.pop()
+
+        return indexes
+
     def get_filename(self, f: str) -> str:
         return f.split(os.sep)[-1]
 
@@ -143,6 +150,7 @@ class Merger:
     def set_file(self, f: str) -> bool:
         try:
             self.filename = self.get_filename(str(f))
+            self.file = f
             info = json.loads(subprocess.check_output(["ffprobe", "-v", "quiet", "-print_format", "json", "-show_streams", f]))
             self.streams = info
             self.status = self.STATUSES["INITIALIZED"]

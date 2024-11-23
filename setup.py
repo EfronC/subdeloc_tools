@@ -3,7 +3,7 @@ import glob
 
 setup(
     name='subdeloc_tools',
-    version='0.9.9',
+    version='0.9.10',
     packages=find_packages(),
     install_requires=[
         "appdirs",
