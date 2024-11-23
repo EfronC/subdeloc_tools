@@ -19,6 +19,13 @@ class Merger:
         self.codec_name = None
         self.filename = ""
 
+    def get_subtitle_indexes(self) -> List[str]:
+        b_indexes = subprocess.check_output(["ffprobe", "-v", "error", "-select_streams", "s", "-show_entries", "stream=index", "-of", "csv=p=0", self.file])
+        indexes = b_indexes.decode("utf-8").split("\n")
+        indexes.pop()
+
+        return indexes
+
     def get_filename(self, f: str) -> str:
         return f.split(os.sep)[-1]
 
@@ -32,9 +39,40 @@ class Merger:
             print(e)
             return False
     
-    def mux(self, f: str, subtitle: str, params: List[str]) -> bool:
+    def generate_subs_params(self, sfiles):
+        """
+        Generate arguments to insert subtitle at last position for the FFMPEG command.
+        """
         try:
-            if self.status == self.STATUSES["INITIALIZED"] and os.path.isfile(subtitle):
+            params = []
+            for i in sfiles:
+                params = params + ["-map", "0:s:"+str(i), "-disposition:s:"+str(i), "0"]
+            return params
+        except Exception as e:
+            print(e)
+            return False
+
+    def generate_params(self, path: str):
+        """
+        Generate whole arguments for the FFMPEG command.
+        """
+        try:
+            sfiles = self.get_kept_subs()
+            filename = self.filename
+            newfilename = "."+os.sep+path+os.sep+filename + '.mkv'
+
+            subparams = self.generate_subs_params(sfiles)
+
+            ads = ["-metadata:s:s:{}".format(len(sfiles)), "language=eng", "-metadata:s:s:{}".format(len(sfiles)), "handler_name=English", "-metadata:s:s:{}".format(len(sfiles)), "title=Unlocalized", "-max_interleave_delta", "0", "-disposition:s:{}".format(len(sfiles)), "default", newfilename]
+            return (subparams, ads)
+        except Exception as e:
+            print(e)
+            return []
+
+    def mux(self, f: str, subtitle: str, path: str = "Finished") -> bool:
+        try:
+            if self.status == self.STATUSES["INITIALIZED"] and os.path.isfile(subtitle) and os.path.isfile(f) and os.path.exists(path):
+                params = self.generate_params(path)
                 self.status = self.STATUSES["MUXXING"]
                 args = ["ffmpeg", "-loglevel", "quiet", "-y", "-i", f, "-i", subtitle, "-c", "copy", "-map", "0:v", "-map", "0:a"] + params[0] + ["-map", "1"] + params[1]
                 rc = subprocess.Popen(args, shell=False)
@@ -143,6 +181,7 @@ class Merger:
     def set_file(self, f: str) -> bool:
         try:
             self.filename = self.get_filename(str(f))
+            self.file = f
             info = json.loads(subprocess.check_output(["ffprobe", "-v", "quiet", "-print_format", "json", "-show_streams", f]))
             self.streams = info
             self.status = self.STATUSES["INITIALIZED"]
