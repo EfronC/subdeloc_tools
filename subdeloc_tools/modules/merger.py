@@ -58,7 +58,7 @@ class Merger:
         """
         try:
             sfiles = self.get_kept_subs()
-            filename = self.filename
+            filename = self.filename.split(".")[0]
             newfilename = path+os.sep+filename + '.mkv'
 
             subparams = self.generate_subs_params(sfiles)

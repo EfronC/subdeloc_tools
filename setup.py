@@ -3,12 +3,12 @@ import glob
 
 setup(
     name='subdeloc_tools',
-    version='0.9.11',
+    version='0.9.12',
     packages=find_packages(),
     install_requires=[
         "appdirs",
         "pysubs2",
-        "modify-subs"
+        "modify-subs>=0.5.2"
     ],
     include_package_data=True,
     package_data={
