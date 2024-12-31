@@ -6,6 +6,7 @@ import os
 from typing import Dict, Union, List, Tuple
 from subdeloc_tools.common.types.types import IntervalVar, MatchesVar, SubtitleSetVar
 from subdeloc_tools.common.utils.logger_config import logger
+from c_delocalizer.pair_subs import PyIntervalSearch
 
 MARGIN = int(os.getenv("PAIR_MARGIN", 1000))
 
@@ -141,8 +142,28 @@ def find_intersections(set_a: SubtitleSetVar, set_b: SubtitleSetVar) -> List[Mat
 
     return intersections
 
+# New grouping
+def find_intersections_beta(set_a: SubtitleSetVar, set_b: SubtitleSetVar) -> List[MatchesVar]:
+    matches = []
+    searcher = PyIntervalSearch(set_b)
+
+    for interval in set_a:
+        intersects = searcher.find_overlapping_intervals(interval["start"], interval["end"])
+
+        if intersects:
+            group_start = intersects[0]["start"]
+            group_end = intersects[0]["end"]
+
+            matches.append({
+                        'start': group_start,
+                        'end': group_end,
+                        "original": [interval],
+                        "reference": intersects
+                    })
+    return matches
+
 # Main methods
-def group_lines_by_time(sub1: pysubs2.SSAFile, sub2: pysubs2.SSAFile) -> List[MatchesVar]:
+def group_lines_by_time(sub1: pysubs2.SSAFile, sub2: pysubs2.SSAFile, algorithm: str="alpha") -> List[MatchesVar]:
     intervals = []
     sub_pivot = sub2
     current = 0
@@ -159,13 +180,18 @@ def group_lines_by_time(sub1: pysubs2.SSAFile, sub2: pysubs2.SSAFile) -> List[Ma
     set_a.sort(key=lambda d: d["start"])
     set_b.sort(key=lambda d: d["start"])
 
-    return find_intersections(set_a, set_b)
+    if algorithm == "beta":
+        intersections = find_intersections_beta(set_a, set_b)
+    else:
+        intersections = find_intersections(set_a, set_b)
 
-def pair_files(s1: str, s2: str) -> List[MatchesVar]:
+    return intersections
+
+def pair_files(s1: str, s2: str, algorithm: str="alpha") -> List[MatchesVar]:
     logger.debug("Margin: {}".format(MARGIN))
     sub1 = load_ass(s1)
     sub2 = load_ass(s2)
 
-    res = group_lines_by_time(sub1, sub2)
+    res = group_lines_by_time(sub1, sub2, algorithm)
 
     return res

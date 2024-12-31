@@ -36,9 +36,9 @@ class SubTools:
 		with open(filename, "w", encoding="utf8") as output:
 			json.dump(data, output, ensure_ascii=False, indent=2)
 
-	def main(self) -> str:
+	def main(self, algorithm: str = "alpha") -> str:
 		# Assuming pairsubs.pair_files is defined elsewhere and returns a list of subtitles
-		res = pairsubs.pair_files(self.main_sub, self.ref_sub)
+		res = pairsubs.pair_files(self.main_sub, self.ref_sub, algorithm)
 		s = self.search_honorifics(res)
 		return honorific_fixer.fix_original(self.main_sub, s, self.output_name)
 
